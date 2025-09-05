@@ -10,7 +10,7 @@ public class Main {
 
         List<Restaurant> restaurants = new ArrayList<>();
 
-        Restaurant r1 = new Restaurant("Tandoori Palace");
+        Restaurant r1 = new Restaurant("Ala Dhakshinapuramlo");
         MenuSection starters1 = new MenuSection("Starters");
         starters1.addItem("Paneer Tikka", 180);
         starters1.addItem("Chicken 65", 200);
@@ -29,8 +29,7 @@ public class Main {
         r1.addSection(desserts1);
         restaurants.add(r1);
 
-        // Second Restaurant
-        Restaurant r2 = new Restaurant("Spicy Treats");
+        Restaurant r2 = new Restaurant("Animuthayalu");
         MenuSection starters2 = new MenuSection("Starters");
         starters2.addItem("Veg Manchuria", 150);
         starters2.addItem("Chilli Chicken", 220);
@@ -48,7 +47,7 @@ public class Main {
         r2.addSection(desserts2);
         restaurants.add(r2);
 
-        // Show all restaurants
+
         System.out.println("Choose a Restaurant:");
         for (int i = 0; i < restaurants.size(); i++) {
             System.out.println((i + 1) + ". " + restaurants.get(i).getName());
@@ -70,7 +69,7 @@ public class Main {
 
             if (choice.equals("0")) break;
 
-            String[] parts = choice.split("\\.");
+            String[] parts = choice.split("");
             if (parts.length == 2) {
                 int sectionIndex = Integer.parseInt(parts[0]) - 1;
                 int itemIndex = Integer.parseInt(parts[1]) - 1;
