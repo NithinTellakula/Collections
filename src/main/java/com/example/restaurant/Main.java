@@ -10,6 +10,7 @@ public class Main {
 
         List<Restaurant> restaurants = new ArrayList<>();
 
+
         Restaurant r1 = new Restaurant("Ala Dhakshinapuramlo");
         MenuSection starters1 = new MenuSection("Starters");
         starters1.addItem("Paneer Tikka", 180);
@@ -29,6 +30,7 @@ public class Main {
         r1.addSection(desserts1);
         restaurants.add(r1);
 
+
         Restaurant r2 = new Restaurant("Animuthayalu");
         MenuSection starters2 = new MenuSection("Starters");
         starters2.addItem("Veg Manchuria", 150);
@@ -47,8 +49,7 @@ public class Main {
         r2.addSection(desserts2);
         restaurants.add(r2);
 
-
-        System.out.println("Choose a Restaurant:");
+        System.out.println("\nChoose a Restaurant:");
         for (int i = 0; i < restaurants.size(); i++) {
             System.out.println((i + 1) + ". " + restaurants.get(i).getName());
         }
@@ -56,12 +57,14 @@ public class Main {
         int restChoice = sc.nextInt() - 1;
 
         if (restChoice < 0 || restChoice >= restaurants.size()) {
-            System.out.println("Invalid choice. Exiting");
+            System.out.println("Invalid choice. Exiting...");
             return;
         }
 
         Restaurant chosenRestaurant = restaurants.get(restChoice);
+
         chosenRestaurant.showMenu();
+
         Order order = new Order();
         while (true) {
             System.out.print("Enter your choice (like 2.1 or 3.2 or 0 to finish): ");
@@ -69,22 +72,31 @@ public class Main {
 
             if (choice.equals("0")) break;
 
-            String[] parts = choice.split("");
+            String[] parts = choice.split("\\.");
             if (parts.length == 2) {
-                int sectionIndex = Integer.parseInt(parts[0]) - 1;
-                int itemIndex = Integer.parseInt(parts[1]) - 1;
+                try {
+                    int sectionIndex = Integer.parseInt(parts[0]) - 1;
+                    int itemIndex = Integer.parseInt(parts[1]) - 1;
 
-                if (sectionIndex >= 0 && sectionIndex < chosenRestaurant.getSections().size()) {
-                    MenuSection chosenSection = chosenRestaurant.getSections().get(sectionIndex);
-                    if (itemIndex >= 0 && itemIndex < chosenSection.getItems().size()) {
-                        MenuItem item = chosenSection.getItems().get(itemIndex);
-                        order.addItem(item);
-                        System.out.println(item.getName() + " added to your order.");
+                    if (sectionIndex >= 0 && sectionIndex < chosenRestaurant.getSections().size()) {
+                        MenuSection chosenSection = chosenRestaurant.getSections().get(sectionIndex);
+                        if (itemIndex >= 0 && itemIndex < chosenSection.getItems().size()) {
+                            MenuItem item = chosenSection.getItems().get(itemIndex);
+                            order.addItem(item);
+                            System.out.println(item.getName() + " added to your order.");
+                        } else {
+                            System.out.println("Invalid item number.");
+                        }
+                    } else {
+                        System.out.println("Invalid section number.");
                     }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input format.");
                 }
+            } else {
+                System.out.println("Please enter in format section.item (like 2.1)");
             }
         }
-
 
         order.showOrder();
 
