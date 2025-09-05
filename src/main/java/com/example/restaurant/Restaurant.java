@@ -17,7 +17,7 @@ public class Restaurant {
     }
 
     public void showMenu() {
-        System.out.println(name );
+        System.out.println( name );
         for (int i = 0; i < sections.size(); i++) {
             sections.get(i).showItems(i + 1);
         }
@@ -27,6 +27,8 @@ public class Restaurant {
     public List<MenuSection> getSections() {
         return sections;
     }
+
+    public String getName() {
+        return name;
+    }
 }
-
-
