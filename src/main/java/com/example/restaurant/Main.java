@@ -57,7 +57,7 @@ public class Main {
         int restChoice = sc.nextInt() - 1;
 
         if (restChoice < 0 || restChoice >= restaurants.size()) {
-            System.out.println("Invalid choice. Exiting...");
+            System.out.println("Invalid choice. Exiting");
             return;
         }
 
@@ -65,7 +65,7 @@ public class Main {
         chosenRestaurant.showMenu();
         Order order = new Order();
         while (true) {
-            System.out.print("\nEnter your choice (like 2.1 or 3.2 or 0 to finish): ");
+            System.out.print("Enter your choice (like 2.1 or 3.2 or 0 to finish): ");
             String choice = sc.next();
 
             if (choice.equals("0")) break;
